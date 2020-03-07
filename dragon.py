@@ -1,6 +1,8 @@
 import random 
 import time
 
+#Variables must also be declared beforehand too, keep this in mind to help remembering the function stuff too
+#Functions must be declared before they can be called in Python!!!!
 def displayIntro():
 	print('You are in a land full of dragons. In front of you, you see two caves, the dragon is friendly')
 	print('and will share his treasure with you. The other dragon is greedy and hungry, and will eat you in sight.')
