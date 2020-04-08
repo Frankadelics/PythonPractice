@@ -17,8 +17,8 @@ def inputPlayerLetter():
 	#A list is returned, the player's letter is the first and the computer is the second
 	letter = ''
 	while not (letter == 'X' or letter == 'O'):
-		print('Do you wanto be X or O?')
-		leter = input().upper()
+		print('Do you want to be X or O?')
+		letter = input().upper()
 
 	#The first element in the list is the player's letter' the second is the computer's letter
 	if letter == 'X':
