@@ -153,7 +153,7 @@ while True:
 				else:
 					turn = 'computer'
 
-		elif turn == 'computer':
+		else:
 			#Now it is the computer's turn
 			move = getComputerMove(theBoard, computerLetter)
 			makeMove = (theBoard, computerLetter, move)
