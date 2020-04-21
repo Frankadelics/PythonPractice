@@ -56,7 +56,7 @@ def getBoardCopy(board):
 	return boardCopy
 
 def isSpaceFree(board, move):
-	#Return True if the passed move is free on the passed board. 
+	#Return True if the passed move is free on the passed board.
 	return board[move] == ''
 
 def getPlayerMove(board):
@@ -73,7 +73,7 @@ def chooseRandomMoveFromList(board, movesList):
 	possibleMoves = []
 	for i in movesList:
 		if isSpaceFree(board, i):
-			posibleMoves.append(i)
+			possibleMoves.append(i)
 
 	if len(possibleMoves) != 0:
 		return random.choice(possibleMoves)
@@ -82,21 +82,21 @@ def chooseRandomMoveFromList(board, movesList):
 
 def getComputerMove(board, computerLetter):
 	#Given a board and the computer's letter, determine where to move and return that move
-	if comoputerLetter == 'X':
+	if computerLetter == 'X':
 		playerLetter = 'O'
 	else:
 		playerLetter = 'X'
 
-	#Here is the lgorithm for the AI:
+	#Here is the algorithm for the AI:
 	#First, check if we can win the next move
 	for i in range(1, 10):
 		boardCopy = getBoardCopy(board)
-		if isSpaceFree(boardCopy(board, i)):
+		if isSpaceFree(boardCopy, i):
 			makeMove(boardCopy, computerLetter, i)
 			if isWinner(boardCopy, computerLetter):
 				return i
 
-	#Check if the player could won on their next move an block them
+	#Check if the player could win on their next move an block them
 	for i in range(1, 10):
 		boardCopy = getBoardCopy(board)
 		if isSpaceFree(boardCopy, i):
@@ -117,9 +117,9 @@ def getComputerMove(board, computerLetter):
 	return chooseRandomMoveFromList(board, [2, 4, 6, 8])
 
 def isBoardFull(board):
-	#Returns True if every space on the board has been taken. Other false
+	#Returns True if every space on the board has been taken. Otherwise false
 	for i in range(1, 10):
-		if isSPaceFree(board, i):
+		if isSpaceFree(board, i):
 			return False
 		return True
 
@@ -141,35 +141,35 @@ while True:
 			move = getPlayerMove(theBoard)
 			makeMove(theBoard, playerLetter, move)
 
-		if isWinner(theBoard, playerLetter):
-			drawBoard(theBoard)
-			print('Hooray! You hav won te game!')
-			gameIsPlaying = False
-		else:
-			if isBoardFUl(theBoard):
+			if isWinner(theBoard, playerLetter):
 				drawBoard(theBoard)
-				print('The game is a tie!')
-				break
+				print('Hooray! You hav won te game!')
+				gameIsPlaying = False
 			else:
-				turn = 'computer'
+				if isBoardFull(theBoard):
+					drawBoard(theBoard)
+					print('The game is a tie!')
+					break
+				else:
+					turn = 'computer'
 
-	else:
-		#Now it is the computer's turn
-		move = getComputerMove(theBoard, computerLetter)
-		makeMove = (theBoard, computerLetter, move)
+		elif turn == 'computer':
+			#Now it is the computer's turn
+			move = getComputerMove(theBoard, computerLetter)
+			makeMove = (theBoard, computerLetter, move)
 
-		if isWinner(theBOard, computerLetter):
-			drawBoard(theBoard)
-			print('The computer has beaten you! You lose.')
-			gameIsPlaying = False
-		else:
-			if isBoardFull(theBoard):
+			if isWinner(theBoard, computerLetter):
 				drawBoard(theBoard)
-				print('The game is a tie!')
-				break
+				print('The computer has beaten you! You lose.')
+				gameIsPlaying = False
 			else:
-				turn = 'player'
+				if isBoardFull(theBoard):
+					drawBoard(theBoard)
+					print('The game is a tie!')
+					break
+				else:
+					turn = 'player'
 
 	print('Do you want to play again? (yes or no)')
-	if not input().lower().startswith('y'):	
+	if not input().lower().startswith('y'):
 		break
