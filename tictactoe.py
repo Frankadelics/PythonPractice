@@ -135,10 +135,11 @@ while True:
 	gameIsPlaying = True
 
 	while gameIsPlaying:
-		if turn == 'player':
+		if turn != 'computer':
 			#It is the player's turn
 			drawBoard(theBoard)
 			move = getPlayerMove(theBoard)
+			print("This is what move equals: " + str(move))
 			makeMove(theBoard, playerLetter, move)
 
 			if isWinner(theBoard, playerLetter):
