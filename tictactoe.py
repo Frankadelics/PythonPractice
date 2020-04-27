@@ -157,7 +157,7 @@ while True:
 		else:
 			#Now it is the computer's turn
 			move = getComputerMove(theBoard, computerLetter)
-			makeMove = (theBoard, computerLetter, move)
+			makeMove(theBoard, computerLetter, move)
 
 			if isWinner(theBoard, computerLetter):
 				drawBoard(theBoard)
