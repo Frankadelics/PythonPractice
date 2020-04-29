@@ -42,13 +42,13 @@ def isWinner(bo, le):
 	#Given a board and a player's letter, this function returns True if that player has won
 	#"Bo" is  board and "le" is letter so we don't type all that much
 	return ((bo[7] == le and bo[8] == le and bo[9] == le) or #Across the top
-		(bo[4] == le and bo[5] == le and bo[6] == le) or #Across the middle
-		(bo[1] == le and bo[2] == le and bo[3] == le) or #Across the bottom
-		(bo[7] == le and bo[4] == le and bo[1] == le) or #Down the left side
-		(bo[8] == le and bo[5] == le and bo[2] == le) or #Down the middle
-		(bo[9] == le and bo[6] == le and bo[3] == le) or #Down the right side
-		(bo[7] == le and bo[5] == le and bo[3] == le) or #Diagonal
-		(bo[9] == le and bo[5] == le and bo[1] == le))   #Diagonal
+			(bo[4] == le and bo[5] == le and bo[6] == le) or #Across the middle
+			(bo[1] == le and bo[2] == le and bo[3] == le) or #Across the bottom
+			(bo[7] == le and bo[4] == le and bo[1] == le) or #Down the left side
+			(bo[8] == le and bo[5] == le and bo[2] == le) or #Down the middle
+			(bo[9] == le and bo[6] == le and bo[3] == le) or #Down the right side
+			(bo[7] == le and bo[5] == le and bo[3] == le) or #Diagonal
+			(bo[9] == le and bo[5] == le and bo[1] == le))   #Diagonal
 
 def getBoardCopy(board):
 	#Make a copy of the board list and return it
@@ -123,7 +123,7 @@ def isBoardFull(board):
 	for i in range(1, 10):
 		if isSpaceFree(board, i):
 			return False
-		return True
+	return True
 
 
 print('Welcome to Tic-Tac-Toe!')
