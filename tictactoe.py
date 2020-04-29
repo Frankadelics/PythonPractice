@@ -1,18 +1,15 @@
 #Gonna make tic tac toe with Python this time around
-#Just a random comment to make this thing commit
-#another random comment to push this
-#comment to try atom out now
 import random
 
 def drawBoard(board):
 	#This function prints out the board that it waas passed
 
 	#"board" is a list of 10 strings representing the board (ignore index 0).
-	print(board[7] + '|' + board[8] + '|' + board[9])
-	print('-+-+-')
-	print(board[4] + '|' + board[5] + '|' + board[6])
-	print('-+-+-')
-	print(board[1] + '|' + board[2] + '|' + board[3])
+	print('  ' + board[7] + ' | ' + board[8] + ' | ' + board[9])
+	print(' ---+---+---')
+	print('  ' + board[4] + ' | ' + board[5] + ' | ' + board[6])
+	print(' ---+---+---')
+	print('  ' + board[1] + ' | ' + board[2] + ' | ' + board[3])
 
 def inputPlayerLetter():
 	#This asks the player what letter they want to be
@@ -59,7 +56,7 @@ def getBoardCopy(board):
 
 def isSpaceFree(board, move):
 	#Return True if the passed move is free on the passed board.
-	return board[move] == ''
+	return board[move] == ' '
 
 def getPlayerMove(board):
 	#Let the player enter their move
@@ -130,7 +127,7 @@ print('Welcome to Tic-Tac-Toe!')
 
 while True:
 	#Reset the board
-	theBoard = [''] * 10
+	theBoard = [' '] * 10
 	playerLetter, computerLetter = inputPlayerLetter()
 	turn = whoGoesFirst()
 	print('The ' + turn + ' will go first.')
@@ -141,7 +138,6 @@ while True:
 			#It is the player's turn
 			drawBoard(theBoard)
 			move = getPlayerMove(theBoard)
-			print("This is what move equals: " + str(move))
 			makeMove(theBoard, playerLetter, move)
 
 			if isWinner(theBoard, playerLetter):
