@@ -1,15 +1,41 @@
 #Gonna make tic tac toe with Python this time around
 import random
+import time
+
+def boardNumbered():
+	print()
+	print()
+	print('                *************************************************')
+	print('                |                                               |')
+	print('                |            Welcome to Tic-Tac-Toe!            |')
+	print('                |                                               |')
+	print('                *************************************************')
+	print('                |    You\'ll be going up against a computer!     |')
+	print('                |    Hopefully you can win! Good luck!          |')
+	print('                *************************************************')
+	print('                |    This is how the board is numbered:         |')
+	print('                *************************************************')
+	print()
+	numberedBoard = '0 1 2 3 4 5 6 7 8 9'.split()
+	drawBoard(numberedBoard)
+
+	print()
+	print('                *************************************************')
+	print('                |    Use this as a refernce.                    |')
+	print('                *************************************************')
+	print()
 
 def drawBoard(board):
 	#This function prints out the board that it waas passed
 
 	#"board" is a list of 10 strings representing the board (ignore index 0).
-	print('  ' + board[7] + ' | ' + board[8] + ' | ' + board[9])
-	print(' ---+---+---')
-	print('  ' + board[4] + ' | ' + board[5] + ' | ' + board[6])
-	print(' ---+---+---')
-	print('  ' + board[1] + ' | ' + board[2] + ' | ' + board[3])
+	print('                                   *************')
+	print('                                   | ' + board[7] + ' | ' + board[8] + ' | ' + board[9] + ' |')
+	print('                                   |---+---+---|')
+	print('                                   | ' + board[4] + ' | ' + board[5] + ' | ' + board[6] + ' |')
+	print('                                   |---+---+---|')
+	print('                                   | ' + board[1] + ' | ' + board[2] + ' | ' + board[3] + ' |')
+	print('                                   *************')
 
 def inputPlayerLetter():
 	#This asks the player what letter they want to be
@@ -18,7 +44,7 @@ def inputPlayerLetter():
 	while not (letter == 'X' or letter == 'O'):
 		print('Do you want to be X or O?')
 		letter = input().upper()
-
+		print()
 	#The first element in the list is the player's letter' the second is the computer's letter
 	if letter == 'X':
 		return ['X', 'O']
@@ -122,11 +148,8 @@ def isBoardFull(board):
 			return False
 	return True
 
-
-print('Welcome to Tic-Tac-Toe!')
-
 while True:
-	#Reset the board
+	boardNumbered()
 	theBoard = [' '] * 10
 	playerLetter, computerLetter = inputPlayerLetter()
 	turn = whoGoesFirst()
@@ -136,10 +159,12 @@ while True:
 	while gameIsPlaying:
 		if turn != 'computer':
 			#It is the player's turn
+			print()
 			drawBoard(theBoard)
+			print()
 			move = getPlayerMove(theBoard)
 			makeMove(theBoard, playerLetter, move)
-
+			drawBoard(theBoard)
 			if isWinner(theBoard, playerLetter):
 				drawBoard(theBoard)
 				print('Hooray! You hav won te game!')
@@ -156,6 +181,10 @@ while True:
 			#Now it is the computer's turn
 			move = getComputerMove(theBoard, computerLetter)
 			makeMove(theBoard, computerLetter, move)
+			print()
+			print('Okay, it\'s the computer\'s turn. Let it think for a bit')
+			print()
+			time.sleep(2)
 
 			if isWinner(theBoard, computerLetter):
 				drawBoard(theBoard)
