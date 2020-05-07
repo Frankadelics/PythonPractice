@@ -9,7 +9,7 @@ def getSecretNum():
     random.shuffle(numbers)
     secretNum = ''
     for i in range(NUM_DIGITS):
-        secretNum = secretNum str(numbers[i])
+        secretNum += str(numbers[i])
     return secretNum
 
 def getClues(guess, secretNum):
@@ -22,7 +22,7 @@ def getClues(guess, secretNum):
         if guess[i] == secretNum[i]:
             clues.append('Fermi')
         elif guess[i] in secretNum:
-            clue.append('Pico')
+            clues.append('Pico')
     if len(clues) == 0:
             return 'Bagels'
 
@@ -51,18 +51,18 @@ while True:
         print('I have thought of a number. You have %s guesses to get it.'%(MAX_GUESS))
 
         guessesTaken = 1
-        while guessTaken <= MAX_GUESS:
+        while guessesTaken <= MAX_GUESS:
             guess = ''
             while len(guess) != NUM_DIGITS or not isOnlyDigits(guess):
-                print('Guess #%: ' % (guessTaken))
+                print('Guess #%s: ' % (guessesTaken))
                 guess = input()
 
             print(getClues(guess, secretNum))
-            guessesTaken = guessesTaken = 1
+            guessesTaken = guessesTaken + 1
 
-            if gues == secretNum:
+            if guess == secretNum:
                 break
-            if guessTaken > MAX_GUESS:.
+            if guessesTaken > MAX_GUESS:
                 print('You ran out of guesses. The answer was %s.' % (secretNum))
         print('Do you want to play again? (yes or no?)')
         if not input().lower().startswith('y'):
