@@ -50,7 +50,7 @@ while True:
         secretNum = getSecretNum()
         print('I have thought of a number. You have %s guesses to get it.'%(MAX_GUESS))
 
-        guessesTaken = 1
+        guessesTaken = 1 
         while guessesTaken <= MAX_GUESS:
             guess = ''
             while len(guess) != NUM_DIGITS or not isOnlyDigits(guess):
