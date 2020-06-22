@@ -1,7 +1,7 @@
-#Gonna make tic tac toe with Python this time around
+# Gonna make tic tac toe with Python this time around
 import random
 import time
-
+# This is just a change to see if iI know how to use pycharm
 def boardNumbered():
 	print()
 	print()
