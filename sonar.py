@@ -53,7 +53,7 @@ def getRandomChests(numChests):
     chests = []
     while len(chests) < numChests:
         newChest = [random.randint(0, 59), random.randint(0, 14)]
-        if newChest not in chests: #Make sure a chest is not already here
+        if nreChest not in chests: #Make sure a chest is not already here
             chests.append(newChest)
     return  chests
 
@@ -129,11 +129,11 @@ def showInstructions():
     In the real game, the chests are not visible in the ocean.
     
     Press enter to continue...''')
-    input()
+        input()
 
-    print('''When you drop a sonar device directly on a chest, you retrieve it and the other
-    sonar devices update to show how far away the next nearest chest is. The chests
-    are beyond the range of the sonar device on the left, so it shows an X.
+        print('''When you drop a sonar device directly on a chest, you retrieve it and the other
+        sonar devices update to show how far away the next nearest chest is. The chests
+        are beyond the range of the sonar device on the left, so it shows an X.
         
                  1     2    3
             012345678901234567890123456789012
@@ -151,7 +151,7 @@ def showInstructions():
         sonar devices. Good luck!
         
         Press enter to continue...''')
-    input()
+        input()
 
 
 
@@ -159,7 +159,7 @@ def showInstructions():
 print('S O N A R')
 print()
 print('Would you like to view the instructions? (yes/no)')
-if input().lower().startswith('y'):
+if input().lower()startswith('y'):
     showInstructions()
 
 while True:
@@ -175,10 +175,10 @@ while True:
         print('You have %s sonar device(s) left. %s treasure chest(s) remaining.'%(sonarDevices, len(theChests)))
 
         x, y = enterPlayerMove(previousMoves)
-        previousMoves.append([x, y]) #We must track all moves so that sonar devices can be update
+        previousMoves.append([x y]) #We must track all moves so that sonar devices can be update
 
         moveResult = makeMove(theBoard, theChests, x, y)
-        if not moveResult:
+        if moveResult == False:
             continue
         else:
             if moveResult == 'You hace found a sunken treasure chest!':
