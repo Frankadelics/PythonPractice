@@ -19,13 +19,13 @@ def getNewBoard():
 
 def drawBoard(board):
     #Draw the board data structure
-    tensDigitsLine = '   '
+    tensDigitsLine = '  '
     for i in range(1, 6):
-        tensDigitsLine += (' ' * 9) + str(i) #str() returns string of thing inside it
+        tensDigitsLine += ('' * 9) + str(i) #str() returns string of thing inside it
 
     #Print the numbers across the top of the board
     print(tensDigitsLine)
-    print('  ' + ('0123456789' * 6))
+    print(' ' + ('0123456789' * 6))
     print()
 
     #Print each of the 15 rows
@@ -35,15 +35,17 @@ def drawBoard(board):
             extraSpace = ' '
         else:
             extraSpace = ''
+
         #Create the string for this row on the board
         boardRow = ''
         for column in range(60):
             boardRow += board[column][row]
-        print('%s%s%s%s' % (extraSpace, row, boardRow, row))
+
+        print('%s%s%s%s'%(extraSpace, row, boardRow, row))
 
     #Print the numbers across the bottom of the board
     print()
-    print('  ' + ('0123456789' * 6))
+    print('' + ('0123456789' * 6))
     print(tensDigitsLine)
 
 def getRandomChests(numChests):
@@ -53,11 +55,11 @@ def getRandomChests(numChests):
         newChest = [random.randint(0, 59), random.randint(0, 14)]
         if newChest not in chests: #Make sure a chest is not already here
             chests.append(newChest)
-    return chests
+    return  chests
 
 def isOnBoard (x, y):
     #Return True if the coordinates are on the board; otherwise, return False
-    return x >= 0 and x <= 59 and y >= 0 and y <= 14
+    return x >= 0 and x <- 59 and y >= 0 and y <= 14
 
 def makeMove (board, chests, x, y):
     #Change the board data structure with a sonar device character. Remove chests from chests list as they are found
@@ -65,19 +67,13 @@ def makeMove (board, chests, x, y):
     #Otherwise, return the string of the result of this move
     smallestDistance = 100 #All chests will be closer than 100
     for cx, cy in chests:
-        print('Here is chests: %s' % chests)
-        input()
-        print('Here is cx and cy: %s %s' % (cx, cy))
-        input()
         distance = math.sqrt((cx - x) * (cx - x) + (cy - y) * (cy - y))
-        print('Here is distance: %s' % distance)
-        input()
+
         if distance < smallestDistance: #We want the closest chest
             smallestDistance = distance
 
     smallestDistance = round(smallestDistance)
-    print('Here is smallDistance: %s' % smallestDistance)
-    input()
+
     if smallestDistance == 0:
         #xy is directly on a treasure chest
         chests.remove([x, y])
@@ -85,16 +81,14 @@ def makeMove (board, chests, x, y):
     else:
         if smallestDistance < 10:
             board[x][y] = str(smallestDistance)
-            return 'Treasure detected at a distance of %s from the sonar device.' % smallestDistance
+            return 'Treasure detected at a distance of %s from the sonar device.'%(smallestDistance)
         else:
             board[x][y] = 'X'
-            return 'Sonar did not detect anything. All treasure chests are out of range.'
+            return 'Sonar did not detect anything. All trasure chests are out of range.'
 
 def enterPlayerMove(previousMoves):
-    #Let the player enter their move. Return a two-item  list of int xy coordinates
-    #Takes in characters from the user, these characters are stored as a list
-    #The characters are then turned into an int and returned so we can do something with them
-    print('Where do you want to drop the next sonar device? (x: 0 - 59 y: 0 - 14 or type \'quit)')
+    #Let the player neter their move. Return a two-item  list of int xy coordinates
+    print('Where do you want to drop the next sonar device? (x: 0 - 59 y: 0 - 14 or type \'quit')
     while True:
         move = input()
         if move.lower() == 'quit':
@@ -111,7 +105,7 @@ def enterPlayerMove(previousMoves):
         print('Enter a number from 0 to 59, a space, then a number from 0 to 14.')
 
 def showInstructions():
-    print('''Instructions:
+    print ('''Instructions:
     You are the captain of the Simon, a treasure-hunting ship. Your current mission
     is to use sonar devices to find three sunken treasure chests at the bottom of
     the ocean. But you only have cheap sonar that finds distance, not direction.
@@ -137,8 +131,7 @@ def showInstructions():
     Press enter to continue...''')
     input()
 
-    print('''
-    When you drop a sonar device directly on a chest, you retrieve it and the other
+    print('''When you drop a sonar device directly on a chest, you retrieve it and the other
     sonar devices update to show how far away the next nearest chest is. The chests
     are beyond the range of the sonar device on the left, so it shows an X.
         
@@ -153,18 +146,17 @@ def showInstructions():
            
             012345678901234567890123456789012
                  1    2     3
-    The treasure chests don't move around. Sonar devices can detect treasure chests
-    up to a distance of 9 spaces. Try to collect all 3 chests before running out of
-    sonar devices. Good luck!
+        The reasure chests don't move around. Sonar devices can detect treasure chests
+        up to a distance of 9 spaces. Try to collect all 3 chests before running out of
+        sonar devices. Good luck!
         
-    Press enter to continue...''')
+        Press enter to continue...''')
     input()
 
 
 
 
 print('S O N A R')
-print()
 print()
 print('Would you like to view the instructions? (yes/no)')
 if input().lower().startswith('y'):
@@ -180,17 +172,17 @@ while True:
 
     while sonarDevices > 0:
         #Show sonar device and chest statuses.
-        print('You have %s sonar device(s) left. %s treasure chest(s) remaining.' % (sonarDevices, len(theChests)))
+        print('You have %s sonar device(s) left. %s treasure chest(s) remaining.'%(sonarDevices, len(theChests)))
 
         x, y = enterPlayerMove(previousMoves)
-        previousMoves.append([x, y]) #We must track all moves so that sonar devices can be updated
+        previousMoves.append([x, y]) #We must track all moves so that sonar devices can be update
 
         moveResult = makeMove(theBoard, theChests, x, y)
-        if moveResult == False:
+        if not moveResult:
             continue
         else:
-            if moveResult == 'You have found a sunken treasure chest!':
-                #Update all of the sonar devices currently on the map.
+            if moveResult == 'You hace found a sunken treasure chest!':
+                #Update all of the onsar devices currently on the map.
                 for x, y in previousMoves:
                     makeMove(theBoard, theChests, x, y)
                     drawBoard(theBoard)
@@ -202,12 +194,12 @@ while True:
 
         sonarDevices -= 1
 
-        if sonarDevices == 0:
+        if sonarDevices == 0
             print('We\' run out of sonar devices! Now we have to run the ship around and head')
             print('for home with the treasure chests still out there! Game over.')
             print('     The remaining chests were here:')
             for x, y in theChests:
-                print('  %s, %s' % (x, y))
+                print('  %s, %s'%(x, y))
 
     print('Do you want to play again? (yes or no)')
     if not input.lower().startswith('y'):
