@@ -53,7 +53,7 @@ def getRandomChests(numChests):
     chests = []
     while len(chests) < numChests:
         newChest = [random.randint(0, 59), random.randint(0, 14)]
-        if nreChest not in chests: #Make sure a chest is not already here
+        if newChest not in chests: #Make sure a chest is not already here
             chests.append(newChest)
     return  chests
 
@@ -109,49 +109,49 @@ def showInstructions():
     You are the captain of the Simon, a treasure-hunting ship. Your current mission
     is to use sonar devices to find three sunken treasure chests at the bottom of
     the ocean. But you only have cheap sonar that finds distance, not direction.
-    
+
     Enter coordinates to drop a sonar device. The ocean map will be marked with
     how far away the nearest chest is, or an X if it is beyond the sonar device's
     range. For example, the C marks where chests are. The sonar device shows a
-    3 because the closest chest is 3 paces away. 
-    
+    3 because the closest chest is 3 paces away.
+
                  1     2    3
             012345678901234567890123456789012
-           
+
            0~~~~`~```~`~``~~~``~`~~``~~~``~`~0
            1~`~`~``~~`~```~~~```~~`~`~~~`~~~~1
            2`~`C``3~~~~`C`~~~~`````~~``~~~`` 2
            3````````~~~`````~~~`~`````~`~``~`3
            4~`~~~~`~~`~~`C`~``~~`~~~`~```~``~4
-           
+
             012345678901234567890123456789012
                  1    2     3
     In the real game, the chests are not visible in the ocean.
-    
-    Press enter to continue...''')
-        input()
 
-        print('''When you drop a sonar device directly on a chest, you retrieve it and the other
-        sonar devices update to show how far away the next nearest chest is. The chests
-        are beyond the range of the sonar device on the left, so it shows an X.
-        
+    Press enter to continue...''')
+    input()
+
+    print('''When you drop a sonar device directly on a chest, you retrieve it and the other
+    sonar devices update to show how far away the next nearest chest is. The chests
+    are beyond the range of the sonar device on the left, so it shows an X.
+
                  1     2    3
             012345678901234567890123456789012
-           
+
            0~~~~`~```~`~``~~~``~`~~``~~~``~`~0
            1~`~`~``~~`~```~~~```~~`~`~~~`~~~~1
            2`~`X``7~~~~`C`~~~~`````~~``~~~`` 2
            3````````~~~`````~~~`~`````~`~``~`3
            4~`~~~~`~~`~~`C`~``~~`~~~`~```~``~4
-           
+
             012345678901234567890123456789012
                  1    2     3
         The reasure chests don't move around. Sonar devices can detect treasure chests
         up to a distance of 9 spaces. Try to collect all 3 chests before running out of
         sonar devices. Good luck!
-        
+
         Press enter to continue...''')
-        input()
+    input()
 
 
 
@@ -159,7 +159,7 @@ def showInstructions():
 print('S O N A R')
 print()
 print('Would you like to view the instructions? (yes/no)')
-if input().lower()startswith('y'):
+if input().lower().startswith('y'):
     showInstructions()
 
 while True:
@@ -175,10 +175,10 @@ while True:
         print('You have %s sonar device(s) left. %s treasure chest(s) remaining.'%(sonarDevices, len(theChests)))
 
         x, y = enterPlayerMove(previousMoves)
-        previousMoves.append([x y]) #We must track all moves so that sonar devices can be update
+        previousMoves.append([x, y]) #We must track all moves so that sonar devices can be update
 
         moveResult = makeMove(theBoard, theChests, x, y)
-        if moveResult == False:
+        if not moveResult:
             continue
         else:
             if moveResult == 'You hace found a sunken treasure chest!':
@@ -194,7 +194,7 @@ while True:
 
         sonarDevices -= 1
 
-        if sonarDevices == 0
+        if sonarDevices == 0:
             print('We\' run out of sonar devices! Now we have to run the ship around and head')
             print('for home with the treasure chests still out there! Game over.')
             print('     The remaining chests were here:')
