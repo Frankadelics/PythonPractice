@@ -1,4 +1,4 @@
-#Ceasarian Cipher
+#Ceasarian Cipher Finished
 SYMBOLS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
 MAX_KEY_SIZE = len(SYMBOLS)
 
